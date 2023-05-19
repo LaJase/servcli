@@ -1,33 +1,35 @@
-servers:
-  ITEM1:
-    name: Small description for ITEM1
-    group1:
-      - name: Server1
-        isaws: true
-      - name: Server2
-        isaws: false
-      - name: Server3
-        isaws: true
-    group2:
-      - name: Server1
-        isaws: false
-      - name: Server2
-        isaws: true
-      - name: Server3
-        isaws: true
-  ITEM2:
-    name: Small description for ITEM2
-    group1:
-      - name: Server1
-        isaws: true
-      - name: Server2
-        isaws: false
-      - name: Server3
-        isaws: true
-    group2:
-      - name: Server1
-        isaws: false
-      - name: Server2
-        isaws: true
-      - name: Server3
-        isaws: true
+server_list:
+  Entity1:
+    description: Small description for Entity1
+    elements:
+      group1:
+        - name: Server1
+          isaws: false
+        - name: Server2
+          isaws: true
+        - name: Server3
+          isaws: false
+      group2:
+        - name: Server1
+          isaws: true
+        - name: Server2
+          isaws: false
+        - name: Server3
+          isaws: true
+  Entity1:
+    description: Small description for Entity1
+    elements:
+      group1:
+        - name: Server1
+          isaws: false
+        - name: Server2
+          isaws: true
+        - name: Server3
+          isaws: false
+      group2:
+        - name: Server1
+          isaws: true
+        - name: Server2
+          isaws: false
+        - name: Server3
+          isaws: true

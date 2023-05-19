@@ -1,4 +1,5 @@
 /*
+NOTE: Add email and/or username
 Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,12 +26,16 @@ import (
 	"fmt"
 	"os"
 
-	// "github.com/LaJase/servcli/ui"
+	"github.com/LaJase/servcli/models"
+	"github.com/LaJase/servcli/ui"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
-var cfgFile string
+var (
+	cfgFile   string
+	cfgGloabl models.ServerConfig
+)
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -47,10 +52,12 @@ var rootCmd = &cobra.Command{
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
 		// Call the basic TUI
-		// ui.UIManager()
+		ui.UIManager()
 	},
 }
 
+// Return the cobra.command.
+// This is needed for documentation generation
 func GetServCliCmd() *cobra.Command {
 	return rootCmd
 }
@@ -65,12 +72,8 @@ func Execute() {
 }
 
 func init() {
-	// Here you will define your flags and configuration settings.
-	// Cobra supports persistent flags, which, if defined here,
-	// will be global for your application.
 	cobra.OnInitialize(initConfig)
 
-	fmt.Println("Je passe par ici")
 	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "", "config file (default is $PWD/config/servcli-config.yaml)")
 
 	// Cobra also supports local flags, which will only run
@@ -80,10 +83,8 @@ func init() {
 
 func initConfig() {
 	if cfgFile != "" {
-		// Use config file from the flag.
 		viper.SetConfigFile(cfgFile)
 	} else {
-		// Find default config file
 		pwd, err := os.Getwd()
 		cobra.CheckErr(err)
 
@@ -93,9 +94,8 @@ func initConfig() {
 		viper.SetConfigName("servcli-config")
 	}
 
-	viper.AutomaticEnv()
-
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Println("Using config file:", viper.ConfigFileUsed())
+		viper.Unmarshal(&cfgGloabl)
 	}
 }
