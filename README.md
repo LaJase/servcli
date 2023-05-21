@@ -1,5 +1,7 @@
 # servcli
 
+## Purpose
+
 The "Command line server manager" project is a command line application designed to facilitate server management. Its
 main objective is to allow users to select a specific server from a list based on various customizable criteria.
 
@@ -14,42 +16,44 @@ execution or resource management can be performed easily.
 The "Command line server manager" aims to improve the efficiency and ease of server management, providing administrators
 and users with a powerful tool to access and manipulate servers more quickly and accurately.
 
-# Specifications
+## Build instructions
+
+If you're new to Go, check out ["How to Build and Install Go Programs"](https://www.digitalocean.com/community/tutorials/how-to-build-and-install-go-programs)
+
+## Running the Program
+
+navigate to the root directory of the project and run either `go run .` to run the program or `go build` to build the
+program binary. If you built the binary, you can run it with `./project-management` or even add it to your PATH so you
+can just run `project-management` from anywhere.
+
+## Configuration
+
+For the moment, the configuration is only possible through a yaml file. The program will take by default the one named
+`./config/servcli-config.yaml`. But it is possible to provide your own file with the `--config` option.
 
 The list of servers will be described in a file in yaml format with the following scheme:
 
 ```yaml
-servers:
-  ITEM1:
-    name: Small description for ITEM1
-    group1:
-      - name: Server1
-        isaws: true
-      - name: Server2
-        isaws: false
-      - name: Server3
-        isaws: true
-    group2:
-      - name: Server1
-        isaws: false
-      - name: Server2
-        isaws: true
-      - name: Server3
-        isaws: true
-  ITEM2:
-    name: Small description for ITEM2
-    group1:
-      - name: Server1
-        isaws: true
-      - name: Server2
-        isaws: false
-      - name: Server3
-        isaws: true
-    group2:
-      - name: Server1
-        isaws: false
-      - name: Server2
-        isaws: true
-      - name: Server3
-        isaws: true
+server_list:
+  Entity1:
+    description: Small description for Entity1
+    elements:
+      group1:
+        - name: e1g1serv1
+          isaws: false
+        - name: e1g1serv2
+          isaws: true
+        - name: e1g1serv3
+          isaws: false
+      group2:
+        - name: e1g2serv1
+          isaws: true
+        - name: e1g2serv2
+          isaws: false
+        - name: e1g2serv3
+          isaws: true
+ssh_command: ssh -T git@github.com %s
 ```
+
+## Collaboration
+You're welcome to write features and report issues for this project.
