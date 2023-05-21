@@ -96,7 +96,14 @@ func initConfig() {
 	}
 
 	if err := viper.ReadInConfig(); err == nil {
-		fmt.Println("Using config file:", viper.ConfigFileUsed())
-		viper.Unmarshal(&internal.CfgGlobal)
+		fmt.Printf("\nUsing config file: %s\n\n", viper.ConfigFileUsed())
+
+		if err := viper.Unmarshal(&internal.CfgGlobal); err != nil {
+			fmt.Printf("ERROR - Unmarshalling config file %s\n%s", viper.ConfigFileUsed(), err)
+			os.Exit(1)
+		}
+	} else {
+		fmt.Printf("ERROR - Reading config file %s\n%s", viper.ConfigFileUsed(), err)
+		os.Exit(1)
 	}
 }
