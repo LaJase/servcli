@@ -1,5 +1,4 @@
 /*
-NOTE: Add email and/or username
 Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,15 +25,14 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/LaJase/servcli/models"
-	"github.com/LaJase/servcli/ui"
+	"github.com/LaJase/servcli/internal"
+	tea "github.com/charmbracelet/bubbletea"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
 var (
-	cfgFile   string
-	cfgGloabl models.ServerConfig
+	cfgFile string
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -48,15 +46,22 @@ var rootCmd = &cobra.Command{
   Through a combination of intuitive commands and advanced filters, users will be able to quickly narrow down the list
   of available servers to their specific needs. Once the server is selected, actions such as SSH connection, remote
   command execution or resource management can be performed easily. `,
-	// Uncomment the following line if your bare application
-	// has an action associated with it:
+
+	// with to argument this is the default launched application
 	Run: func(cmd *cobra.Command, args []string) {
-		// Call the basic TUI
-		ui.UIManager()
+		m := internal.Model{}
+		m.InitLists()
+
+		p := tea.NewProgram(m)
+
+		if _, err := p.Run(); err != nil {
+			fmt.Println("Error running program:", err)
+			os.Exit(1)
+		}
 	},
 }
 
-// Return the cobra.command.
+// Return the cobra.command
 // This is needed for documentation generation
 func GetServCliCmd() *cobra.Command {
 	return rootCmd
@@ -75,10 +80,6 @@ func init() {
 	cobra.OnInitialize(initConfig)
 
 	rootCmd.PersistentFlags().StringVarP(&cfgFile, "config", "c", "", "config file (default is $PWD/config/servcli-config.yaml)")
-
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
 func initConfig() {
@@ -96,6 +97,6 @@ func initConfig() {
 
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Println("Using config file:", viper.ConfigFileUsed())
-		viper.Unmarshal(&cfgGloabl)
+		viper.Unmarshal(&internal.CfgGlobal)
 	}
 }

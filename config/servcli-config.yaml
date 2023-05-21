@@ -3,33 +3,34 @@ server_list:
     description: Small description for Entity1
     elements:
       group1:
-        - name: Server1
+        - name: e1g1serv1
           isaws: false
-        - name: Server2
+        - name: e1g1serv2
           isaws: true
-        - name: Server3
+        - name: e1g1serv3
           isaws: false
       group2:
-        - name: Server1
+        - name: e1g2serv1
           isaws: true
-        - name: Server2
+        - name: e1g2serv2
           isaws: false
-        - name: Server3
+        - name: e1g2serv3
           isaws: true
-  Entity1:
-    description: Small description for Entity1
+  Entity2:
+    description: Small description for Entity2
     elements:
       group1:
-        - name: Server1
+        - name: e2g1serv1
           isaws: false
-        - name: Server2
+        - name: e2g1serv2
           isaws: true
-        - name: Server3
+        - name: e2g1serv3
           isaws: false
       group2:
-        - name: Server1
+        - name: e2g2serv1
           isaws: true
-        - name: Server2
+        - name: e2g2serv2
           isaws: false
-        - name: Server3
+        - name: e2g2serv3
           isaws: true
+ssh_command: ssh -T git@github.com %s
