@@ -11,8 +11,10 @@ import (
 	"github.com/inancgumus/screen"
 )
 
-type status int
-type sshFinishedMsg struct{ err error }
+type (
+	status         int
+	sshFinishedMsg struct{ err error }
+)
 
 const (
 	entities status = iota
@@ -44,12 +46,12 @@ func (i item) Description() string { return i.desc }
 func (i item) FilterValue() string { return i.title }
 
 type Model struct {
+	err      error
+	choice   string
 	lists    []list.Model
 	focused  status
 	loaded   bool
 	quitting bool
-	choice   string
-	err      error
 	command  bool
 }
 
@@ -149,7 +151,6 @@ func (m Model) View() string {
 	} else {
 		return quitTextStyle.Render("Loading...")
 	}
-
 }
 
 func (m *Model) Prev() {
