@@ -7,7 +7,7 @@ require (
 	github.com/charmbracelet/bubbletea v0.27.0
 	github.com/charmbracelet/lipgloss v0.12.1
 	github.com/inancgumus/screen v0.0.0-20190314163918-06e984b86ed3
-	github.com/spf13/cobra v1.7.0
+	github.com/spf13/cobra v1.8.1
 	github.com/spf13/viper v1.19.0
 )
 
@@ -18,7 +18,7 @@ require (
 	github.com/charmbracelet/x/input v0.1.0 // indirect
 	github.com/charmbracelet/x/term v0.1.1 // indirect
 	github.com/charmbracelet/x/windows v0.1.0 // indirect
-	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
+	github.com/cpuguy83/go-md2man/v2 v2.0.4 // indirect
 	github.com/erikgeiser/coninput v0.0.0-20211004153227-1c3628e74d0f // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
