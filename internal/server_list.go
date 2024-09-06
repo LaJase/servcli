@@ -2,8 +2,8 @@ package internal
 
 type (
 	Entity struct {
-		Description string              `mapstructure:"description"`
 		Elements    map[string][]Server `mapstructure:"elements"`
+		Description string              `mapstructure:"description"`
 	}
 
 	Server struct {
